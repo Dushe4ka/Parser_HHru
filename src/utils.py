@@ -1,53 +1,25 @@
-import re
+def filter_vacancies(vacancies, key_words):
+    return [vacancy for vacancy in vacancies if
+            any(key.lower() in vacancy['description'].lower() for key in key_words)]
 
-def get_salary(vacansy):
-    """
-    Получаем зарплату вакансии
-    :param vacansy:
-    :return:
-    """
-    salary = vacansy.salary
 
-    if '-' in salary:
-        """
-        Если есть зарплата от-до то считаем среднюю
-        """
-        min_salary, max_salary = map(int, re.findall(r'\d+', salary))
-        return (min_salary + max_salary) / 2
-    elif salary.isdigit():
-        """
-        Если просто ЗП то сразу выводим
-        """
-        return int(salary)
-    else:
-        return 0
 
-def filter_vacancy(vacancies_list, filter_words):
-    """
-    фильтр вакансий по ключевым словам
-    :param vacancies_list:
-    :param filter_words:
-    :return:
-    """
-    filtered_vacancies = []
-    for vacancy in vacancies_list:
-        description_lower = vacancy.description.lower()
-        if any(keyword.lower() in description_lower for keyword in filter_words):
-            filtered_vacancies.append(vacancy)
-    return filtered_vacancies
 
 def get_vacancies_by_salary(vacancies, salary_range):
-    """
-    Получаем вакансии по зарплате
-    :param vacancies:
-    :param salary_range:
-    :return:
-    """
-    if '-' in salary_range:
-        min_salary, max_salary = map(int, salary_range.split('-'))
-        return [vacancy for vacancy in vacancies if min_salary <= get_salary(vacancy) <= max_salary]
-    else:
+    if not salary_range:
         return vacancies
+    salary_range = salary_range.split('-')
+    if len(salary_range) == 1:
+        min_salary = max_salary = int(salary_range[0])
+    elif len(salary_range) == 2:
+        min_salary, max_salary = map(int, salary_range)
+    else:
+        print("Неверный формат диапазона зарплат.")
+        return vacancies
+
+    return [vacancy for vacancy in vacancies if
+            vacancy.get('salary_from', 0) >= min_salary and
+            vacancy.get('salary_from', float('inf')) <= max_salary]
 
 def sort_vacancies(vacancies_list):
     """
@@ -73,5 +45,13 @@ def print_vacancies(vacancies_list):
     :param vacancies_list:
     :return:
     """
-    for vacancy in vacancies_list:
-        print(vacancy)
+    if vacancies_list:
+        for index, vacancy in enumerate(vacancies_list, start=1):
+            print(f"Вакансия {index}:")
+            print(f"Название: {vacancy.get('name', 'Не указано')}")
+            print(f"Зарплата от: {vacancy.get('salary_from', 'Не указана')}")
+            print(f"Описание: {vacancy.get('description', 'Отсутствует')}")
+            print(f"Ссылка: {vacancy.get('alternate_url', 'Не указана')}")
+            print()
+    else:
+        print("Вакансии отсутствуют")

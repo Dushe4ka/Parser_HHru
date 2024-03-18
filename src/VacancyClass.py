@@ -16,4 +16,9 @@ class Vacancy:
     def __lt__(self, other):
         return self.salary < other.salary
 
-    
+    def to_json(self):
+        return json.dumps(self.__dict__)
+
+    @staticmethod
+    def from_json(json_vacancy):
+        return Vacancy(**json.loads(json_vacancy))
