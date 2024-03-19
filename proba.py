@@ -16,6 +16,7 @@ def get_vacancies(keyword):
     if response.status_code == 200:
         data = response.json()
         vacancies = data.get("items", [])
+        print(type(vacancies))
         for vacancy in vacancies:
             # Extract relevant information from the vacancy object
             vacancy_id = vacancy.get("id")

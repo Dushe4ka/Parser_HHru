@@ -21,11 +21,10 @@ class VacancySaver(AbstractVacancySaver):
         self.file_path = file_path
 
     def add_vacancy(self, vacancy):
-        vacancy.pop()
         """Добавление вакансии в файл"""
-        with open(self.file_path, 'a') as file:
-            json.dump(vacancy, file, indent=2)
-            file.write("\n")
+        with open(self.file_path, 'w') as file:
+            json.dump(vacancy.get("items", []), file, indent=2)
+            # file.write("\n")
 
     def delete_vacancy(self, vacancy):
         """Заглушка для удаления вакансии из файла"""

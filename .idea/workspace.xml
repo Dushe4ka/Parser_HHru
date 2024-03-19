@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb337c8a-cc03-4c75-9439-9bf1227d4816" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Saver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/VacancyClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/VacancyClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/api_src.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/api_src.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proba.py" beforeDir="false" afterPath="$PROJECT_DIR$/proba.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/vacancy_saver.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/vacancy_saver.py" afterDir="false" />
     </list>
@@ -51,13 +48,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "feature2",
-    "last_opened_file_path": "C:/Users/Game1/PycharmProjects/Kursach4"
+    "last_opened_file_path": "C:/Users/Game1/PycharmProjects/HomeWork_14.1"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Game1\PycharmProjects\Kursach4" />
       <recent name="C:\Users\Game1\PycharmProjects\Kursach4\src" />
+      <recent name="C:\Users\Game1\PycharmProjects\Kursach4" />
     </key>
   </component>
   <component name="RunManager" selected="Python.main">
@@ -74,7 +71,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Game1\PycharmProjects\Kursach4\main.py" />
+      <option name="SCRIPT_NAME" value="C:\Users\Game1\PycharmProjects\Kursach4\src\main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -129,8 +126,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.utils" />
         <item itemvalue="Python.proba" />
+        <item itemvalue="Python.utils" />
       </list>
     </recent_temporary>
   </component>
@@ -174,13 +171,22 @@
       <option name="project" value="LOCAL" />
       <updated>1710344145860</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="edit 18.03.2024">
+      <option name="closed" value="true" />
+      <created>1710774774747</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1710774774747</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Реализация парсера с HH.ru" />
     <MESSAGE value="добавление API HHru, класса сохранения в файл" />
     <MESSAGE value="реализация методов фильтра, вывод в консоль, без записи в файл" />
-    <option name="LAST_COMMIT_MESSAGE" value="реализация методов фильтра, вывод в консоль, без записи в файл" />
+    <MESSAGE value="edit 18.03.2024" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit 18.03.2024" />
   </component>
 </project>
