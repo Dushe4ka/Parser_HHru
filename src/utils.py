@@ -4,7 +4,7 @@ import json
 
 def load_data():
     ROOT_DIR = os.path.dirname(os.path.dirname(__file__))
-    PATH = os.path.join(ROOT_DIR, 'vacancies.json')
+    PATH = os.path.join(ROOT_DIR, 'src', 'vacancies.json')
     with open(PATH, encoding='UTF-8') as f:
         data = json.load(f)
         return data

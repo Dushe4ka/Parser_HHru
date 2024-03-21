@@ -9,7 +9,7 @@ def main():
     platforms = ["HeadHunter"]
     search_query = input("Введите поисковый запрос: ")
     # top_n = int(input("Введите количество вакансий для вывода в топ N: "))
-    # filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
+    filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
     # salary_range = input("Введите диапазон зарплат (пример: 100000-150000): ")
 
     hh_api = HeadHunterAPI()
@@ -31,13 +31,16 @@ def main():
             salary_info = vacancy['salary']
             if salary_info:
                 salary_from = salary_info['from']
+                salary_to = salary_info['to']
             else:
                 salary_from = 'Зарплата не указана'
+                salary_to = 'Зарплата не указана'
             try:
-                description = vacancy['description']
+                description = vacancy['snippet']['responsibility']
             except:
                 description = 'Описание отсутствует'
             vacancies_list.append({'name': name, 'alternate_url': alternate_url,'salary_from': salary_from,
+                                   'salary_to': salary_to,
                                    'description': description})
     for i in vacancies_list:
         print(i)
@@ -76,6 +79,10 @@ def main():
     #     print_vacancies(top_vacancies)
     # else:
     #     print("Не удалось получить вакансии. Пожалуйста, проверьте запрос и попробуйте снова.")
+
+    filtered_vacancies = filter_vacancies(vacancies_list,filter_words)
+    print(filtered_vacancies)
+
 
 
 if __name__ == "__main__":
