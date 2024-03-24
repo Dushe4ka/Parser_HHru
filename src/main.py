@@ -1,7 +1,8 @@
 from src.api_src import HeadHunterAPI
 from src.VacancyClass import Vacancy
 from src.vacancy_saver import VacancySaver
-from src.utils import filter_vacancies, get_vacancies_by_salary, sort_vacancies, get_top_vacancies, print_vacancies, load_data
+from src.utils import filter_vacancies, get_top_vacancies, print_vacancies, \
+    load_data
 import json
 
 
@@ -9,7 +10,10 @@ def main():
     platforms = ["HeadHunter"]
     search_query = input("Введите поисковый запрос: ")
     # top_n = int(input("Введите количество вакансий для вывода в топ N: "))
-    filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
+    filter_words = input("Введите точное название вакансии для фильтрации: ")
+    salary_from = input("Введите цену от:")
+    salary_to = input("Введите цену до:")
+    """.split()"""
     # salary_range = input("Введите диапазон зарплат (пример: 100000-150000): ")
 
     hh_api = HeadHunterAPI()
@@ -39,13 +43,19 @@ def main():
                 description = vacancy['snippet']['responsibility']
             except:
                 description = 'Описание отсутствует'
-            vacancies_list.append({'name': name, 'alternate_url': alternate_url,'salary_from': salary_from,
+            vacancies_list.append({'name': name, 'alternate_url': alternate_url, 'salary_from': salary_from,
                                    'salary_to': salary_to,
                                    'description': description})
-    for i in vacancies_list:
-        print(i)
 
+    # for i in vacancies_list:
+    #     """
+    #         Для отладки программы
+    #     """
+    #     print(i)
 
+    # for vacancy in vacancies_list:
+    #     if filter_words.lower() in vacancy['description']:
+    #         print(vacancy)
 
     # if data and 'items' in data:
     #     vacancies_list = []
@@ -80,9 +90,16 @@ def main():
     # else:
     #     print("Не удалось получить вакансии. Пожалуйста, проверьте запрос и попробуйте снова.")
 
-    filtered_vacancies = filter_vacancies(vacancies_list,filter_words)
+    filtered_vacancies = filter_vacancies(vacancies_list, filter_words, salary_from, salary_to)
+    # top_vacancies = get_top_vacancies(filtered_vacancies, top_n)
+    # print(top_vacancies)
+    # print_vacancies(filtered_vacancies)
+    # for filter_vacancy in filtered_vacancies:
+    #     print(filter_vacancy)
     print(filtered_vacancies)
 
+    for v in filtered_vacancies:
+        print(f"Название: {v.get('name', 'Не указано')}")
 
 
 if __name__ == "__main__":
