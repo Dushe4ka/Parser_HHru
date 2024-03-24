@@ -31,7 +31,7 @@ def main():
     top_vacancy = get_top_vacancies(filtered_vacancies, top_n)
     print_vacancies(top_vacancy)
 
-    # data.delete_vacancy()
+    data.delete_vacancy()
 
 if __name__ == "__main__":
     main()
