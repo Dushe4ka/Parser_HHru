@@ -13,11 +13,15 @@ def main():
     filter_words = input("Введите фильтры для отбора вакансии: ")
     salary_from = input("Введите зарплату от: ")
 
-    hh_api = HeadHunterAPI()
-    hh_vacancies = hh_api.get_vacancies(search_query)
-    data = VacancySaver()
-    data.add_vacancy(hh_vacancies)
-    vacancies_from_json = load_data()
+    try:
+        hh_api = HeadHunterAPI()
+        hh_vacancies = hh_api.get_vacancies(search_query)
+        data = VacancySaver()
+        data.add_vacancy(hh_vacancies)
+        vacancies_from_json = load_data()
+    except:
+        print("Ошибка при запросе к API")
+        exit()
 
     vacancies_list = Vacancy.from_json(vacancies_from_json)
 
