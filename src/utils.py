@@ -10,32 +10,40 @@ def load_data():
         return data
 
 
-def filter_vacancies(vacations_list, words=None, salary_from='Зарплата не указана', salary_to='Зарплата не указана'):
+def filter_vacancies(vacations_list, words=None, salary_from=None):
     filtered_objects = []
 
     for vacation in vacations_list:
-        if words is not None and vacation['name'] != words:
-            continue
-        elif words is None:
-            continue
-        if salary_from is not None and vacation['salary_from'] < salary_from:
-            continue
-        if salary_to is not None and vacation['salary_to'] > salary_to:
-            continue
+        if vacation['description'].lower().count(words):
+            if int(vacation['salary_from']) >= int(salary_from):
+                filtered_objects.append(vacation)
 
-        filtered_objects.append(vacation)
 
     return filtered_objects
 
 
-def get_top_vacancies(vacancies, top_n):
+def get_top_vacancies(sorted_vacancies, top_n):
     """
     Получаем первые top_n вакансий
-    :param vacancies:
+    :param sorted_vacancies:
     :param top_n:
     :return:
     """
-    return vacancies[:top_n]
+    if not top_n:
+        top_n = len(sorted_vacancies)
+        top_vacancies = sorted_vacancies[:top_n]
+        return top_vacancies
+
+    try:
+        top_n = int(top_n)
+        if len(sorted_vacancies) < top_n:
+            top_n = len(sorted_vacancies)
+
+        top_vacancies = sorted_vacancies[:top_n]
+        return top_vacancies
+    except:
+        pass
+
 
 def print_vacancies(vacancies_list):
     """
@@ -45,6 +53,7 @@ def print_vacancies(vacancies_list):
     """
     if vacancies_list:
         for vacancy in vacancies_list:
+            print()
             print(f"Название: {vacancy.get('name', 'Не указано')}")
             print(f"Зарплата от: {vacancy.get('salary_from', 'Не указана')}")
             print(f"Описание: {vacancy.get('description', 'Отсутствует')}")
@@ -52,13 +61,4 @@ def print_vacancies(vacancies_list):
             print()
     else:
         print("Вакансии отсутствуют")
-    # if vacancies_list:
-    #     for index, vacancy in enumerate(vacancies_list, start=1):
-    #         print(f"Вакансия {index}:")
-    #         print(f"Название: {vacancy.get('name', 'Не указано')}")
-    #         print(f"Зарплата от: {vacancy.get('salary_from', 'Не указана')}")
-    #         print(f"Описание: {vacancy.get('description', 'Отсутствует')}")
-    #         print(f"Ссылка: {vacancy.get('alternate_url', 'Не указана')}")
-    #         print()
-    # else:
-    #     print("Вакансии отсутствуют")
+

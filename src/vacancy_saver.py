@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+import os
 import json
 
 
@@ -8,11 +9,7 @@ class AbstractVacancySaver(ABC):
         pass
 
     @abstractmethod
-    def delete_vacancy(self, vacancy):
-        pass
-
-    @abstractmethod
-    def get_vacancy_by_filter(self, filters):
+    def delete_vacancy(self):
         pass
 
 
@@ -22,14 +19,11 @@ class VacancySaver(AbstractVacancySaver):
 
     def add_vacancy(self, vacancy):
         """Добавление вакансии в файл"""
-        with open(self.file_path, 'w') as file:
+        with open(self.file_path, 'a') as file:
             json.dump(vacancy.get("items", []), file, indent=2)
             # file.write("\n")
 
-    def delete_vacancy(self, vacancy):
+    def delete_vacancy(self):
         """Заглушка для удаления вакансии из файла"""
-        pass
-
-    def get_vacancy_by_filter(self, filters):
-        """Заглушка для поиска вакансий по фильтру"""
-        pass
+        open(self.file_path, 'w').close()
+        os.remove(self.file_path)
